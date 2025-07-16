@@ -1,0 +1,53 @@
+<%- include('../partials/head') %>
+<!-- Background Particles -->
+
+<%- include('../partials/navbar') %>
+
+<!-- LOGIN SECTION -->
+<section class="container d-flex align-items-center justify-content-center" style="min-height: 90vh; position: relative; z-index: 2;">
+  <div class="glass-card p-5 shadow-lg w-100" style="max-width: 420px;" data-aos="zoom-in" data-aos-duration="1200">
+
+    <!-- Title -->
+    <h3 class="text-center glow-text mb-4">🔐 Login to Continue</h3>
+
+    <!-- Call to Action Info -->
+    <div class="mb-3 text-center small text-light">
+      <i class="fas fa-info-circle me-1"></i>
+      Login to <strong>request a project</strong> or <strong>track your status</strong>. If you're new, please <a href="/register" class="text-info text-decoration-underline">register here</a>.
+    </div>
+
+  
+
+    <!-- Login Form -->
+    <form method="POST" action="/login" id="loginForm">
+      <div class="mb-3">
+        <input name="email" type="email" class="form-control bg-black text-info border-info" placeholder="Email" required />
+      </div>
+      <div class="mb-3">
+        <input name="password" type="password" class="form-control bg-black text-info border-info" placeholder="Password" required />
+      </div>
+
+      <!-- Human Verification -->
+     <!-- reCAPTCHA Widget -->
+<div class="mb-3 text-center">
+ <div class="g-recaptcha" data-sitekey="<%= recaptchaSiteKey %>"></div>
+
+</div>
+
+
+      <!-- Submit Button -->
+      <button class="btn btn-glow w-100">Login</button>
+    </form>
+
+    <!-- Forgot + Register Links -->
+    <div class="text-center mt-3">
+      <a href="/forgot-password" class="text-info small text-decoration-underline me-2">Forgot Password?</a>
+      <span class="text-white-50">|</span>
+      <a href="/register" class="text-info small text-decoration-underline ms-2">New user? Register</a>
+    </div>
+  </div>
+
+
+</section>
+
+<%- include('../partials/footer') %>

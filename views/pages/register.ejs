@@ -1,0 +1,44 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+
+
+<!-- Main Register Container -->
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh; position: relative; z-index: 2;">
+  <div class="glass-card p-5 shadow-lg w-100" style="max-width: 420px;" data-aos="zoom-in" data-aos-duration="1200">
+
+    <!-- Heading -->
+    <h3 class="text-center glow-text mb-3">👤 Create an Account</h3>
+
+    <!-- Subtext -->
+    <p class="small text-center text-light mb-4">
+      Join to request projects, track progress, and explore my developer services.
+      Already have an account? <a href="/login" class="text-info text-decoration-underline">Login here</a>.
+    </p>
+
+
+    <!-- Register Form -->
+    <form method="POST" action="/register">
+      <div class="mb-3">
+        <input name="name" class="form-control bg-black text-info border-info" placeholder="Full Name" required />
+      </div>
+      <div class="mb-3">
+        <input name="email" type="email" class="form-control bg-black text-info border-info" placeholder="Email" required />
+      </div>
+      <div class="mb-3">
+        <input name="password" type="password" class="form-control bg-black text-info border-info" placeholder="Password" required />
+      </div>
+
+      <!-- reCAPTCHA (optional if added for register too) -->
+      <!--
+      <div class="mb-3 text-center">
+        <div class="g-recaptcha" data-sitekey="<%= recaptchaSiteKey %>"></div>
+      </div>
+      -->
+
+      <button class="btn btn-glow w-100">Register</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

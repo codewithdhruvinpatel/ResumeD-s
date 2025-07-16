@@ -1,0 +1,239 @@
+<%- include('../partials/head') %>
+
+<%- include('../partials/navbar') %>
+
+
+<div class="container py-5" style="position: relative; z-index: 2;">
+  <h3 class="mb-4 glow-text">Welcome, <%= user.name %> 👋</h3>
+
+  <% if (projects.length === 0) { %>
+    <div class="alert alert-info">You haven't requested any projects yet.</div>
+  <% } else { %>
+    <% projects.forEach((p, index) => { %>
+      <div class="glass-card shadow-lg mb-5 p-4">
+        <h4 class="text-info mb-3">📁 Project <%= p.id %>: <%= p.request.project_type %></h4>
+
+        <p><strong>Status:</strong>
+          <% if (p.status?.status === 'pending' || p.status?.status === 'registered') { %>
+            <span class="badge bg-warning text-dark">📋 Registered</span>
+          <% } else if (p.status?.status === 'in-progress') { %>
+            <span class="badge bg-info text-dark">🚧 In Progress</span>
+          <% } else if (p.status?.status === 'testing') { %>
+            <span class="badge bg-primary">🧪 Testing</span>
+          <% } else if (p.status?.status === 'deployed') { %>
+            <span class="badge bg-success">🚀 Deployed</span>
+          <% } else if (p.status?.status === 'verified') { %>
+            <span class="badge bg-success">✅ Verified</span>
+          <% } else if (p.status?.status === 'rejected') { %>
+            <span class="badge bg-danger">❌ Rejected</span>
+          <% } else { %>
+            <span class="badge bg-secondary">⏳ Not Updated</span>
+          <% } %>
+        </p>
+
+        <p><strong>Submitted On:</strong> <%= new Date(p.request.created_at).toLocaleDateString() %></p>
+        <p><strong>Rejection Reason:</strong> <%= p.request.rejection_reason || '-' %></p>
+        <% if (p.status) { %>
+          <p><strong>Overall Status:</strong> <%= p.status.status_description %></p>
+        <% } %>
+
+        <% if (p.details) { %>
+          <div class="my-4">
+            <h6 class="glow-text mb-3">🚀 Stage Progress</h6>
+            <div class="row text-center align-items-center">
+              <% const stages = [
+                { key: 'frontend', label: 'Frontend', icon: 'ux.png' },
+                { key: 'backend', label: 'Backend', icon: 'development.png' },
+                { key: 'database', label: 'Database', icon: 'database-management.png' },
+                { key: 'testing', label: 'Testing', icon: 'testing.png' },
+              ]; %>
+              <% stages.forEach(stage => { %>
+                <div class="col">
+                  <div class="glass-card p-2 mb-2">
+                    <img src="/images/<%= stage.icon %>" alt="<%= stage.label %>" class="mb-2" style="width:42px;" />
+                    <div><strong><%= stage.label %></strong></div>
+                    <div class="mt-1">
+                      <% const value = (p.details[stage.key] || '').toLowerCase(); %>
+                      <% if (value === 'done' || value === 'completed' || value === 'passed') { %>
+                        <span class="badge bg-success">✅ Done</span>
+                      <% } else if (value === 'in-progress' || value === 'processing') { %>
+                        <span class="badge bg-warning text-dark">🔄 In Progress</span>
+                      <% } else { %>
+                        <span class="badge bg-secondary">⏳ Pending</span>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
+
+        <% if (p.meetings && p.meetings.length > 0) { %>
+          <hr />
+          <h5 class="glow-text mb-3">📅 Meetings</h5>
+          <div class="table-responsive">
+            <table class="table table-sm table-dark table-bordered">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Mode</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% p.meetings.forEach(m => { %>
+                  <tr>
+                    <td><%= new Date(m.meeting_date).toLocaleDateString() %></td>
+                    <td><%= m.meeting_time %></td>
+                    <td><%= m.meeting_mode || 'N/A' %></td>
+                    <td>
+                      <% if (m.status === 'completed') { %>
+                        <span class="badge bg-success">Completed</span>
+                      <% } else if (m.status === 'cancelled') { %>
+                        <span class="badge bg-danger">Cancelled</span>
+                      <% } else { %>
+                        <span class="badge bg-warning text-dark">Scheduled</span>
+                      <% } %>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </div>
+    <% }); %>
+  <% } %>
+
+  <!-- 🌐 Global Services Summary -->
+  <% if (projects.length > 0) { %>
+    <div class="my-5">
+      <h3 class="glow-text mb-4">💻 Services Summary (All Projects)</h3>
+
+      <% projects.forEach(p => {
+        if (p.services && p.services.length > 0) { %>
+          <div class="glass-card p-4 mb-4 shadow-lg">
+            <h5 class="mb-3 text-info">Project <%= p.id %>: <%= p.request.project_type %></h5>
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm table-dark">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Price</th>
+                    <th>Billing</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% p.services.forEach(service => { %>
+                    <tr>
+                      <td><%= service.service_type || '-' %></td>
+                      <td><%= service.service_name || '-' %></td>
+                      <td><%= service.start_date ? new Date(service.start_date).toLocaleDateString() : '-' %></td>
+                      <td><%= service.end_date ? new Date(service.end_date).toLocaleDateString() : '-' %></td>
+                      <td>₹<%= service.price || '0' %></td>
+                      <td><%= service.billing_type || '-' %></td>
+                      <td><%= service.description || '-' %></td>
+                      <td>
+                        <% if (service.status === 'active') { %>
+                          <span class="badge bg-success">Active</span>
+                        <% } else if (service.status === 'inactive') { %>
+                          <span class="badge bg-secondary">Inactive</span>
+                        <% } else if (service.status === 'pending') { %>
+                          <span class="badge bg-warning text-dark">Pending</span>
+                        <% } else { %>
+                          <span class="badge bg-danger">Unknown</span>
+                        <% } %>
+                      </td>
+                    </tr>
+
+                    <% const servicePayments = p.payments.filter(pay => pay.service_id === service.id); %>
+                    <% if (servicePayments.length > 0) { %>
+                      <tr>
+                        <td colspan="8">
+                          <strong>💳 Payment History for "<%= service.service_name %>":</strong>
+                          <div class="table-responsive mt-2">
+                            <table class="table table-bordered table-sm table-striped table-dark">
+                              <thead>
+                                <tr>
+                                  <th>Payment Mode</th>
+                                  <th>Amount</th>
+                                  <th>Transaction ID</th>
+                                  <th>Status</th>
+                                  <th>Paid On</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% servicePayments.forEach(pay => { %>
+                                  <tr>
+                                    <td><%= pay.payment_mode || 'N/A' %></td>
+                                    <td>₹<%= pay.amount %></td>
+                                    <td><%= pay.transaction_id || '-' %></td>
+                                    <td>
+                                      <% if (pay.status === 'success') { %>
+                                        <span class="badge bg-success">Success</span>
+                                      <% } else if (pay.status === 'failed') { %>
+                                        <span class="badge bg-danger">Failed</span>
+                                      <% } else { %>
+                                        <span class="badge bg-warning text-dark"><%= pay.status %></span>
+                                      <% } %>
+                                    </td>
+                                    <td><%= pay.paid_on ? new Date(pay.paid_on).toLocaleDateString() : '-' %></td>
+                                  </tr>
+                                <% }); %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                    <% } %>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      <% } }); %>
+    </div>
+  <% } %>
+</div>
+
+<!-- 📥 Project Request Form -->
+<div class="container d-flex align-items-center justify-content-center mt-5 mb-5" style="position: relative; z-index: 2;">
+  <div class="glass-card p-5 shadow-lg w-100" style="max-width: 640px;" data-aos="zoom-in" data-aos-duration="1200">
+    <h3 class="text-center glow-text mb-4">📥 Submit a New Project Request</h3>
+    <form action="/project/request" method="POST">
+      <div class="row">
+        <div class="col-md-6 mb-3"><input name="name" class="form-control bg-black text-info border-info" placeholder="Full Name" required /></div>
+        <div class="col-md-6 mb-3"><input name="email" type="email" class="form-control bg-black text-info border-info" placeholder="Email" required /></div>
+        <div class="col-md-6 mb-3"><input name="mobile" class="form-control bg-black text-info border-info" placeholder="Mobile Number" required /></div>
+        <div class="col-md-6 mb-3"><input name="address" class="form-control bg-black text-info border-info" placeholder="Address" required /></div>
+        <div class="col-md-4 mb-3"><input name="state" class="form-control bg-black text-info border-info" placeholder="State" required /></div>
+        <div class="col-md-4 mb-3"><input name="country" class="form-control bg-black text-info border-info" placeholder="Country" required /></div>
+        <div class="col-md-4 mb-3"><input name="pincode" class="form-control bg-black text-info border-info" placeholder="Pin Code" required /></div>
+        <div class="col-md-12 mb-3">
+          <select name="project_type" class="form-control bg-black text-info border-info" required>
+            <option disabled selected>-- Select Project Type --</option>
+            <option>Web Development</option>
+            <option>Web App</option>
+            <option>Windows App</option>
+            <option>iOS Mac</option>
+            <option>iOS Mobile App</option>
+            <option>Android App</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-glow w-100">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">D's Resume</a>
+    <div>
+      <% if (!user) { %>
+        <a href="/login" class="btn btn-outline-light btn-sm me-2">Login</a>
+        <a href="/register" class="btn btn-light btn-sm">Register</a>
+      <% } else if (user) { %>
+         <a href="/dashboard" class="btn btn-outline-light btn-sm">Dashboard</a>
+        <a href="/" class="btn btn-outline-light btn-sm me-2">Resume</a>
+        <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+      <% } %>
+     
+
+    </div>
+  </div>
+</nav>

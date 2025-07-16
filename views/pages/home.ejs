@@ -1,0 +1,310 @@
+<%- include('../partials/head') %>
+<!-- Particle Background -->
+
+
+<%- include('../partials/navbar') %>
+
+
+<!-- HERO -->
+<section id="hero" class="text-center text-white d-flex flex-column justify-content-center align-items-center" style="height:100vh;position:relative;z-index:2;">
+  <h1 class="display-3 glow-text mb-3" data-aos="fade-down">Hi, I'm Dhruvin Patel 👋</h1>
+  <h4 class="lead text-info mb-4" id="typewriter" data-aos="fade-up"></h4>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+  <a href="#about" class="btn btn-glow me-md-3" data-aos="zoom-in">Get to know me</a>
+  <a href="/images/DHRUVIN PATEL RESUME.pdf" class="btn btn-glow" download data-aos="zoom-in">Download CV</a>
+</div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about" class="py-5 container text-white" data-aos="fade-right">
+  <div class="row align-items-center">
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+      <img src="/images/dp.png" class="rounded-circle border border-info shadow-lg" width="240" alt="Dhruvin">
+    </div>
+    <div class="col-md-6">
+      <h2 class="glow-text mb-3">About Me</h2>
+      <p>
+        I'm <strong>Dhruvin Patel</strong>, a Full‑Stack Web Designer & Developer with a Diploma in CSE (CGPA: 8.65/10) from Parul University.  
+        I'm also a Vlogger and Content Creator.  
+        I develop responsive websites and Android apps and have delivered seminars on Web Development & Graphic Design at my university.
+      </p>
+      <p>Languages & tools I work with: C, C++, Java, Python, HTML, CSS, JS, Bootstrap, Node.js + Express, REST APIs, SQL, PostgreSQL.</p>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <a href="mailto:pateldhruvin452@gmail.com" class="btn btn-outline-info btn-sm"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://github.com/codewithdhruvinpatel" class="btn btn-outline-info btn-sm"><i class="fab fa-github"></i> GitHub</a>
+        <a href="tel:+919265715426" class="btn btn-outline-info btn-sm"><i class="fas fa-phone"></i> +91-9265715426</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS & TOOLS -->
+<section id="skills" class="py-5 container text-white" data-aos="fade-left">
+  <h2 class="glow-text mb-4">Skills & Tools</h2>
+  <div class="row g-4 justify-content-center">
+    <% const skills = [
+      { name: "C / C++", icon: "fas fa-code", level: 95 },
+      { name: "Java", icon: "fab fa-java", level: 85 },
+      { name: "Python", icon: "fab fa-python", level: 80 },
+      { name: "HTML5", icon: "fab fa-html5", level: 90 },
+      { name: "CSS3", icon: "fab fa-css3-alt", level: 85 },
+      { name: "Bootstrap", icon: "fab fa-bootstrap", level: 80 },
+      { name: "JavaScript", icon: "fab fa-js-square", level: 85 },
+      { name: "Node.js", icon: "fab fa-node-js", level: 80 },
+      { name: "Express.js", icon: "fas fa-server", level: 75 },
+      { name: "REST API", icon: "fas fa-network-wired", level: 80 },
+      { name: "PostgreSQL", icon: "fas fa-database", level: 80 },
+      { name: "Figma", icon: "fab fa-figma", level: 85 },
+      { name: "Android (Java)", icon: "fab fa-android", level: 75 }
+    ]; %>
+    <% skills.forEach(skill => { %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="glass-card p-4 text-center h-100" data-aos="zoom-in">
+          <i class="<%= skill.icon %> fa-3x mb-3 text-info"></i>
+          <h5><%= skill.name %></h5>
+          <div class="progress bg-black mt-2 rounded-pill" style="height:8px;">
+            <div class="progress-bar bg-info rounded-pill" style="width:<%= skill.level %>%;" role="progressbar"></div>
+          </div>
+          <small class="d-block mt-2"><%= skill.level %>% proficiency</small>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="py-5 container text-white" data-aos="fade-up">
+  <h2 class="glow-text mb-4 text-center">🚀 Featured Projects</h2>
+  <% const projects = [
+    {
+      title: "D's Office",
+      logo: "d-s-office.png",
+      desc: "A client–developer dashboard with project tracking, payments, services, and meeting scheduling.",
+      link: "#"
+    },
+    {
+      title: "floraLens",
+      logo: "flora-lens.png",
+      desc: "A machine learning-based Android app that identifies plant diseases from images.",
+      link: "#"
+    },
+    {
+      title: "D's Loan Management",
+      logo: "loan.png",
+      desc: "Loan application & approval system with user dashboard and status tracking.",
+      link: "#"
+    },
+    {
+      title: "Helpify",
+      logo: "helpyfy.png",
+      desc: "A digital help & volunteer platform for connecting people during emergencies or social campaigns.",
+      link: "#"
+    },
+    {
+      title: "Hospital Management",
+      logo: "image.png",
+      desc: "Comprehensive hospital administration system with patient, doctor, billing and scheduling features.",
+      link: "#"
+    }
+  ]; %>
+
+ <div class="row g-4">
+  <% projects.forEach(project => { %>
+    <div class="col-md-6 col-lg-4">
+      <div class="glass-card p-4 h-100 text-center hover-zoom" data-aos="zoom-in">
+        <img src="/images/<%= project.logo %>" alt="<%= project.title %>"
+             class="mb-4" style="max-height: 180px; max-width: 100%; object-fit: contain;">
+        <h5 class="text-info mb-2"><%= project.title %></h5>
+        <p class="small"><%= project.desc %></p>
+        <!-- <a href="<%= project.link %>" class="btn btn-outline-info btn-sm mt-2">View Project</a> -->
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+
+</section>
+
+<!-- HIGHLIGHTS / STATS -->
+<section id="highlights" class="py-5 container text-white" data-aos="zoom-in">
+  <h2 class="glow-text mb-5 text-center">📈 Highlights</h2>
+  <% const highlights = [
+    { icon: "fas fa-laptop-code", label: "Projects Built", val: 15 },
+    { icon: "fas fa-layer-group", label: "Technologies Used", val: 12 },
+    { icon: "fas fa-chalkboard-teacher", label: "Seminars Delivered", val: 2 },
+    { icon: "fab fa-youtube", label: "YouTube & Vlogs Views", val: 10000 }
+  ]; %>
+  <div class="row g-4 justify-content-center">
+    <% highlights.forEach(h => { %>
+      <div class="col-6 col-md-3">
+        <div class="glass-card text-center p-4 h-100 hover-zoom">
+          <i class="<%= h.icon %> fa-3x text-info mb-3"></i>
+          <h3 class="counter mb-1" data-target="<%= h.val %>">0</h3>
+          <p class="mb-0"><%= h.label %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- TOOLS & IDEs + SOCIAL MEDIA -->
+<section id="tools" class="py-5 container text-white" data-aos="fade-up">
+  <h2 class="glow-text mb-5 text-center">🛠 Tools & IDEs I Use</h2>
+
+  <% const tools = [
+    { name: "Visual Studio Code", icon: "vscode.png" },
+    { name: "Git & GitHub", icon: "github.png" },
+    { name: "PostgreSQL", icon: "pg.png" },
+    { name: "Postman", icon: "postman-icon.png" },
+    { name: "Figma", icon: "figma.png" },
+    { name: "Android Studio", icon: "android-studio-icon.png" },
+    { name: "Render", icon: "logo-placeholder.png" },
+
+    { name: "Vercel", icon: "vercel.png" },
+    { name: "Firebase", icon: "firebase.png" },
+    { name: "neon", icon: "neon.png" },
+    { name: "azure", icon: "azure.png" }
+  ]; %>
+
+  <div class="row g-4 justify-content-center">
+    <% tools.forEach(t => { %>
+      <div class="col-6 col-md-3 col-lg-2 text-center">
+        <div class="glass-card p-3 h-100 hover-zoom" data-aos="zoom-in">
+          <img src="/images/<%= t.icon %>" alt="<%= t.name %>" class="img-fluid mb-2" style="max-height: 60px;">
+          <p class="mb-0 small text-info"><%= t.name %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- SOCIAL LINKS -->
+  <h3 class="glow-text mt-5 mb-4 text-center">🌐 Find Me Online</h3>
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <a href="https://github.com/codewithdhruvinpatel" target="_blank" class="btn btn-outline-info">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/dhruvin-patel-291174305?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="btn btn-outline-info">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a href="https://www.instagram.com/ptl_dhruvin?igsh=MXd2ZWVyZHdqZXdldg%3D%3D&utm_source=qr" target="_blank" class="btn btn-outline-info">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://youtube.com/@dsvlogs2394?si=NEuP7kkpTnUs55nc" target="_blank" class="btn btn-outline-info">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+    <a href="mailto:pateldhruvin452@gmail.com" class="btn btn-outline-info">
+      <i class="fas fa-envelope"></i> Email Me
+    </a>
+  </div>
+</section>
+<!-- HIRE ME / ORDER PROJECT SECTION -->
+<section id="hire" class="py-5 container text-white" data-aos="fade-up">
+  <div class="glass-card p-5 text-center shadow-lg">
+    <h2 class="glow-text mb-3">📩 Need a Project Done?</h2>
+    <p class="lead mb-4">
+      Whether you need a stunning website, mobile app, AI tool, or dashboard — I can help bring your idea to life.
+    </p>
+    
+    <!-- Highlight Services -->
+    <div class="row mb-4">
+      <% const offers = [
+        { icon: "fas fa-globe", label: "Website Development" },
+        { icon: "fas fa-mobile-alt", label: "Android App (Java)" },
+        { icon: "fas fa-robot", label: "AI/ML Based Tools" },
+        { icon: "fas fa-chart-line", label: "Dashboards & Analytics" },
+        { icon: "fas fa-database", label: "Database + API Integration" }
+      ]; %>
+      <% offers.forEach(o => { %>
+        <div class="col-md-4 mb-3">
+          <div class="glass-card p-3 h-100 text-center hover-zoom">
+            <i class="<%= o.icon %> fa-2x text-info mb-2"></i>
+            <h6><%= o.label %></h6>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="/project/request" class="btn btn-glow btn-lg mt-3">
+      🚀 Request a Project
+    </a>
+  </div>
+</section>
+
+<!-- ORDER STEPS SECTION -->
+<section id="order-steps" class="py-5 container text-white" data-aos="fade-up">
+  <h2 class="glow-text mb-4 text-center">🧭 How It Works</h2>
+  <div class="row g-4 justify-content-center">
+
+    <% const steps = [
+      {
+        icon: "fas fa-file-alt",
+        title: "1. Submit Your Request",
+        desc: "Fill in the project form with your idea, goals, and basic requirements."
+      },
+      {
+        icon: "fas fa-comments",
+        title: "2. We Discuss",
+        desc: "I’ll review your request and connect with you to finalize the plan, pricing, and timeline."
+      },
+      {
+        icon: "fas fa-cogs",
+        title: "3. Development Starts",
+        desc: "Once confirmed, I begin development and provide regular updates via your dashboard."
+      },
+      {
+        icon: "fas fa-rocket",
+        title: "4. Delivery & Launch",
+        desc: "Once approved, I deliver the project with full handover or help you deploy it live."
+      }
+    ]; %>
+
+    <% steps.forEach(step => { %>
+      <div class="col-md-6 col-lg-3">
+        <div class="glass-card text-center p-4 h-100 hover-zoom" data-aos="zoom-in">
+          <i class="<%= step.icon %> fa-2x text-info mb-3"></i>
+          <h5><%= step.title %></h5>
+          <p class="small"><%= step.desc %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+
+<%- include('../partials/footer') %>
+
+<!-- Scripts & Inits -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({once:true});</script>
+
+<!-- Particle config -->
+<script>particlesJS("particles-js", {particles:{number:{value:60}, color:{value:"#00f5ff"},shape:{type:"circle"},opacity:{value:0.4},size:{value:3},line_linked:{enable:true,distance:150,color:"#00f5ff",opacity:0.3,width:1},move:{enable:true,speed:2}},interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},modes:{repulse:{distance:100},push:{particles_nb:4}}},retina_detect:!0});</script>
+
+<!-- Typewriter -->
+<script>new Typed('#typewriter',{strings:["Full‑Stack Web Developer","Android App Developer","Vlogger & Content Creator"],typeSpeed:80,backSpeed:40,loop:true});</script>
+
+<!-- Counters -->
+<script>
+ document.querySelectorAll('.counter').forEach(c=>{
+   const update=()=>{
+     const target=+c.dataset.target, count=+c.innerText, inc=target/200;
+     if(count<target){
+       c.innerText=Math.ceil(count+inc);
+       setTimeout(update,20);
+     } else c.innerText=target;
+   };
+   update();
+ });
+</script>
+
+<style>
+ .hover-zoom{transition:transform .3s;}
+ .hover-zoom:hover{transform:scale(1.05);}
+</style>
