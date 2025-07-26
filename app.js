@@ -60,7 +60,7 @@ app.get('/', (req, res) => res.render('pages/home', { title: "Home - D's Resume"
 app.get('/login', (req, res) => {
   res.render('pages/login', {
     title: 'Login - D’s Resume',
-    recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY
+    
   });
 });
 
@@ -68,8 +68,7 @@ app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const recaptcha = req.body['g-recaptcha-response'];
 
-  // 1. Verify reCAPTCHA token with Google
-const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptcha}`;
+
 
   try {
     const response = await axios.post(verifyURL);
@@ -105,7 +104,7 @@ const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${proc
 app.get('/register', (req, res) => {
   res.render('pages/register', {
     title: "Register - D’s Resume",
-    recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY // ✅ add this line
+
   });
 });
 
