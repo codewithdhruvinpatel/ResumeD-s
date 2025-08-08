@@ -1,4 +1,12 @@
 <footer class="text-center mt-5 text-secondary">
+  <div class="container mb-4">
+    <h5>Contact Us</h5>
+    <p>Email: <a href="mailto:pateldhruvin452@gmail.com">pateldhruvin452@gmail.com</a></p>
+    <p>Phone: +91-9265715426</p>
+    <p>Address: D’s Office, 142, Nanvat Falyu, Sevni, Surat,Gujarat, 394320</p>
+     <p><a href="/project/policy" class="text-decoration-underline">View Our Policies</a></p>
+  </div>
+
   <p>&copy; <%= new Date().getFullYear() %> D’s Resume. All rights reserved.</p>
 </footer>
 
@@ -7,6 +15,7 @@
 <script>
   AOS.init();
 </script>
+
 <!-- particles.js library -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
@@ -68,16 +77,18 @@
     "retina_detect": true
   });
 </script>
+
 <script>
   // Auto-dismiss alerts after 3.5s
   setTimeout(() => {
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(alert => {
       alert.classList.add('fade');
-      setTimeout(() => alert.remove(), 500); // Remove after fade
+      setTimeout(() => alert.remove(), 500);
     });
   }, 3500);
 </script>
+
 <script>
   document.getElementById('loginForm').addEventListener('submit', function(e) {
     const checkbox = document.getElementById('robotCheck');
@@ -87,7 +98,7 @@
     }
   });
 </script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
