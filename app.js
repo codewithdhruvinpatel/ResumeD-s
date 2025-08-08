@@ -291,6 +291,9 @@ app.post('/project/request', async (req, res) => {
   }
 });
 
+app.get('/project/policy', (req, res) => {
+  res.render('pages/policies.ejs', { title: 'Project Policies' });
+});
 
 
 
