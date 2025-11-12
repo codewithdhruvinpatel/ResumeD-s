@@ -3,7 +3,15 @@
 
 
 <%- include('../partials/navbar') %>
-
+<!-- AD BANNER (inline, dismissible) -->
+<section id="ad-banner" class="text-center my-4" data-aos="fade-up">
+  <div class="ad-container mx-auto position-relative" style="max-width:1100px;">
+    <button id="ad-close" aria-label="Close ad" class="btn btn-sm btn-dark position-absolute" style="right:8px;top:8px;z-index:5;">&times;</button>
+    <a href="https://your-sponsor-link.example" target="_blank" rel="noopener noreferrer">
+      <img src="/images/Com.png" alt="Sponsor Ad" class="img-fluid rounded shadow-lg w-100" style="height:auto; object-fit:cover;">
+    </a>
+  </div>
+</section>
 
 <!-- HERO -->
 <section id="hero" class="text-center text-white d-flex flex-column justify-content-center align-items-center" style="height:100vh;position:relative;z-index:2;">
@@ -304,7 +312,20 @@
    update();
  });
 </script>
-
+<script>
+  // remember if user closed the ad
+  (function(){
+    const ad = document.getElementById('ad-banner');
+    const closeBtn = document.getElementById('ad-close');
+    if(!ad || !closeBtn) return;
+    // hide if previously closed
+    if(localStorage.getItem('adClosed') === '1') ad.style.display = 'none';
+    closeBtn.addEventListener('click', function(){
+      ad.style.display = 'none';
+      localStorage.setItem('adClosed','1');
+    });
+  })();
+</script>
 <style>
  .hover-zoom{transition:transform .3s;}
  .hover-zoom:hover{transform:scale(1.05);}
