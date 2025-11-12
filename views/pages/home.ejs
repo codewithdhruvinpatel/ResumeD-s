@@ -1,14 +1,39 @@
 <%- include('../partials/head') %>
 <!-- Particle Background -->
+<style>
+  /* Responsive rounded banner styling */
+  #ad-banner .ad-container {
+    overflow: hidden;
+    border-radius: 1.5rem; /* Rounded corners */
+  }
 
+  #ad-banner .banner-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  #ad-banner .banner-img:hover {
+    transform: scale(1.02);
+  }
+
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    #ad-banner .ad-container {
+      border-radius: 1rem;
+      margin: 0 1rem;
+    }
+  }
+</style>
 
 <%- include('../partials/navbar') %>
-<!-- AD BANNER (inline, dismissible) -->
 <section id="ad-banner" class="text-center my-4" data-aos="fade-up">
   <div class="ad-container mx-auto position-relative" style="max-width:1100px;">
-    <button id="ad-close" aria-label="Close ad" class="btn btn-sm btn-dark position-absolute" style="right:8px;top:8px;z-index:5;">&times;</button>
-    <a href="https://your-sponsor-link.example" target="_blank" rel="noopener noreferrer">
-      <img src="/images/Com.png" alt="Sponsor Ad" class="img-fluid rounded shadow-lg w-100" style="height:auto; object-fit:cover;">
+    <a href="https://dsoffice.online" target="_blank" rel="noopener noreferrer">
+      <img src="/images/Com.png" 
+           alt="Course Launch Banner" 
+           class="img-fluid rounded-4 shadow-lg w-100 banner-img">
     </a>
   </div>
 </section>
@@ -312,20 +337,7 @@
    update();
  });
 </script>
-<script>
-  // remember if user closed the ad
-  (function(){
-    const ad = document.getElementById('ad-banner');
-    const closeBtn = document.getElementById('ad-close');
-    if(!ad || !closeBtn) return;
-    // hide if previously closed
-    if(localStorage.getItem('adClosed') === '1') ad.style.display = 'none';
-    closeBtn.addEventListener('click', function(){
-      ad.style.display = 'none';
-      localStorage.setItem('adClosed','1');
-    });
-  })();
-</script>
+
 <style>
  .hover-zoom{transition:transform .3s;}
  .hover-zoom:hover{transform:scale(1.05);}
