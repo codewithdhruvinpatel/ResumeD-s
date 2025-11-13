@@ -59,10 +59,10 @@ function checkAuth(req, res, next) {
 app.get('/', (req, res) => res.render('pages/home', { title: "Home - D's Resume" }));
 app.get('/login', (req, res) => {
   res.render('pages/maintenance', {
-    // title: 'Login - D’s Resume',
-    
+    title: 'Login - D’s Resume'
   });
 });
+
 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -103,11 +103,9 @@ app.post('/login', async (req, res) => {
 
 app.get('/register', (req, res) => {
   res.render('pages/maintenance', {
-    // title: "Register - D’s Resume",
-
+    title: 'Register - D’s Resume'
   });
 });
-
 app.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   try {
