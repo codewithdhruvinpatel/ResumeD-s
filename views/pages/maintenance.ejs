@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>D’s Office — Under Maintenance</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-
+  <!-- NOTE: Using system fonts to avoid external font requests (works with strict CSP) -->
   <style>
     :root{
       --bg-dark:#080814;
@@ -19,7 +17,7 @@
       --muted:rgba(230,238,248,0.7);
     }
 
-    html,body{height:100%;margin:0;padding:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial; color:var(--text);}
+    html,body{height:100%;margin:0;padding:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial; color:var(--text);}
     body{
       background: radial-gradient(1200px 600px at 10% 20%, rgba(139,92,246,0.12), transparent 10%),
                   radial-gradient(900px 500px at 90% 80%, rgba(0,230,255,0.07), transparent 10%),
@@ -39,17 +37,13 @@
       display:grid;grid-template-columns: 1fr 360px;gap:28px;align-items:center;
     }
 
-    /* Left content */
-    .brand{
-      display:flex;align-items:center;gap:14px;
-    }
+    .brand{display:flex;align-items:center;gap:14px;}
     .logo {
       width:72px;height:72px;border-radius:12px;
       display:flex;align-items:center;justify-content:center;
       background: linear-gradient(135deg,var(--accent),var(--neon));
       box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 18px rgba(0,230,255,0.08);
-      color:white;font-weight:800;font-size:20px;
-      transform: translateZ(0);
+      color:white;font-weight:800;font-size:20px;position:relative;
     }
     .title{font-size:22px;font-weight:700;margin:0;}
     .subtitle{color:var(--muted);margin-top:6px;font-size:14px;}
@@ -57,7 +51,6 @@
     .headline { margin-top:20px;font-size:30px;font-weight:800;letter-spacing:-0.6px; color:var(--text); text-shadow: 0 6px 28px rgba(139,92,246,0.07);}
     .desc { margin-top:12px;color:var(--muted);line-height:1.5; }
 
-    /* neon status */
     .status {
       display:inline-block;margin-top:16px;padding:10px 14px;border-radius:999px;
       box-shadow: 0 6px 30px rgba(0,230,255,0.06), inset 0 -4px 12px rgba(0,0,0,0.25);
@@ -68,7 +61,6 @@
       letter-spacing:1px;
     }
 
-    /* Right column */
     .side {
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:12px;padding:22px;
@@ -76,9 +68,7 @@
       box-shadow: 0 8px 30px rgba(2,6,23,0.6);
     }
 
-    .countdown {
-      display:flex;gap:10px;width:100%;justify-content:space-between;
-    }
+    .countdown { display:flex;gap:10px;width:100%;justify-content:space-between; }
     .time-box{
       flex:1;background:var(--glass);border-radius:10px;padding:12px;text-align:center;
       backdrop-filter: blur(6px);
@@ -87,30 +77,17 @@
     .time-label{font-size:12px;color:var(--muted);margin-top:6px}
 
     .actions{display:flex;gap:10px;width:100%;margin-top:6px}
-    .btn{
-      flex:1;padding:10px 12px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
-      background:linear-gradient(90deg,var(--accent),var(--neon));color:white;
-      box-shadow: 0 8px 20px rgba(139,92,246,0.12);
-    }
+    .btn{ flex:1;padding:10px 12px;border-radius:10px;border:0;font-weight:700;cursor:pointer;background:linear-gradient(90deg,var(--accent),var(--neon));color:white;box-shadow: 0 8px 20px rgba(139,92,246,0.12); }
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
 
-    /* toggle */
     .controls{display:flex;gap:8px;align-items:center;margin-top:10px}
-    .toggle{
-      width:46px;height:26px;background:rgba(255,255,255,0.06);border-radius:999px;padding:3px;display:flex;align-items:center;
-    }
+    .toggle{ width:46px;height:26px;background:rgba(255,255,255,0.06);border-radius:999px;padding:3px;display:flex;align-items:center; }
     .knob{width:20px;height:20px;border-radius:50%;background:white;transform:translateX(0);transition:transform 200ms ease;}
 
-    /* footer small */
     .small{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
 
-    /* responsive */
-    @media (max-width:880px){
-      .card{grid-template-columns:1fr; padding:24px;}
-      .side{order:2}
-    }
+    @media (max-width:880px){ .card{grid-template-columns:1fr; padding:24px;} .side{order:2} }
 
-    /* subtle pulse animation */
     .logo::after{
       content:"";position:absolute;width:120px;height:120px;border-radius:20px;
       filter: blur(30px);opacity:0.12;z-index:-1;left: -12px;top:-16px;
@@ -127,10 +104,7 @@
     <section>
       <div class="brand">
         <div style="position:relative;">
-          <div class="logo" aria-hidden="true">
-            <!-- If you have a logo image, replace the text below with an <img> -->
-            D’s
-          </div>
+          <div class="logo" aria-hidden="true">D’s</div>
         </div>
 
         <div>
@@ -151,9 +125,7 @@
     <aside class="side" aria-label="Maintenance status and countdown">
       <div style="width:100%;text-align:center">
         <div style="font-weight:800;font-size:16px">Estimated return</div>
-        <div style="color:var(--muted);font-size:13px;margin-top:6px">
-          <%= (launchLabel) ? launchLabel : 'Scheduled update' %>
-        </div>
+        <div id="launchLabel" style="color:var(--muted);font-size:13px;margin-top:6px">Scheduled update</div>
       </div>
 
       <div class="countdown" role="timer" aria-live="polite" id="countdown">
@@ -177,7 +149,7 @@
 
       <div class="actions">
         <button class="btn" id="notifyBtn">Notify me</button>
-        <button class="btn ghost" id="homeBtn" onclick="window.location.href='/'">Home</button>
+        <button class="btn ghost" id="homeBtn">Home</button>
       </div>
 
       <div class="controls" style="width:100%;justify-content:center">
@@ -187,17 +159,43 @@
         </div>
       </div>
 
-      <div class="small">Page created for D’s Office • Last updated: <%= (updatedAt) ? updatedAt : new Date().toLocaleDateString() %></div>
+      <div class="small" id="updatedAt">Page created for D’s Office • Last updated: —</div>
     </aside>
   </main>
 
   <script>
-    // ---------- CONFIG ----------
-    // Pass `launchDate` as an ISO string when rendering from Express, e.g.
-    // res.render('under-maintenance', { launchDate: '2025-12-01T08:00:00Z', launchLabel: 'Dec 1, 2025 — 8:00 UTC' })
-    const launchISO = '<%= (typeof launchDate !== "undefined") ? launchDate : "" %>';
-    const fallbackDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2).toISOString(); // +2 days fallback
-    const target = new Date(launchISO || fallbackDate);
+    /*******************************
+     * CONFIG - edit these values
+     *
+     * You can either:
+     *  - Edit LAUNCH_ISO and LAUNCH_LABEL below before uploading, OR
+     *  - Append query params when opening the page:
+     *      maintenance.html?launch=2025-12-01T08:00:00Z&label=Dec%2001%2C%202025%20UTC&updated=2025-11-14
+     *******************************/
+    const LAUNCH_ISO = ""; // e.g. "2025-12-01T08:00:00Z" or leave empty to use fallback +2 days
+    const LAUNCH_LABEL = ""; // e.g. "Dec 01, 2025 • 08:00 UTC" (optional)
+    const UPDATED_AT = ""; // e.g. "Nov 14, 2025" (optional)
+
+    // read query params if present (overrides above)
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    const qLaunch = getQueryParam('launch'); // ISO string
+    const qLabel = getQueryParam('label');   // human label
+    const qUpdated = getQueryParam('updated');
+
+    const launchISO = qLaunch || LAUNCH_ISO || "";
+    const launchLabelFromConfig = qLabel || LAUNCH_LABEL || "";
+    const updatedAtFromConfig = qUpdated || UPDATED_AT || "";
+
+    const fallbackDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2); // +2 days
+    const target = launchISO ? new Date(launchISO) : fallbackDate;
+
+    // show label and updatedAt
+    document.getElementById('launchLabel').textContent = launchLabelFromConfig || (launchISO ? new Date(launchISO).toUTCString() : 'Scheduled update');
+    document.getElementById('updatedAt').textContent = updatedAtFromConfig ? `Page created for D’s Office • Last updated: ${updatedAtFromConfig}` : `Page created for D’s Office • Last updated: ${new Date().toLocaleDateString()}`;
 
     // Countdown compute & update
     function updateCountdown() {
@@ -224,18 +222,17 @@
     const timerInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // ---------- Theme toggle ----------
+    // Theme toggle
     const root = document.documentElement;
     const toggle = document.getElementById('themeToggle');
     const knob = document.getElementById('knob');
-
-    // initial theme = dark
     let dark = true;
-
     function applyTheme() {
       if (dark) {
         root.style.setProperty('--bg-dark','#080814');
         root.style.setProperty('--bg-dark-2','#0f0f1a');
+        root.style.setProperty('--glass','rgba(255,255,255,0.06)');
+        root.style.setProperty('--text','#e6eef8');
         knob.style.transform = 'translateX(0)';
       } else {
         root.style.setProperty('--bg-dark','#f7f9fc');
@@ -245,18 +242,22 @@
         knob.style.transform = 'translateX(20px)';
       }
     }
-
     toggle.addEventListener('click', ()=>{ dark = !dark; applyTheme(); toggle.setAttribute('aria-checked', String(!dark)); });
     toggle.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle.click(); }});
     applyTheme();
 
-    // ---------- Notify button (simple demo) ----------
+    // Buttons
+    document.getElementById('homeBtn').addEventListener('click', ()=>{ window.location.href = '/'; });
     document.getElementById('notifyBtn').addEventListener('click', function(){
-      // Demo: opens mail client with subject (replace or enhance with real subscription)
       const subject = encodeURIComponent("Notify me when D's Office is back");
       const body = encodeURIComponent("Hello team,\n\nPlease notify me when D's Office website is back online.\n\nThanks.");
       window.location.href = `mailto:support@dsoffice.online?subject=${subject}&body=${body}`;
     });
+
+    // Accessibility: if JS disabled, show fallback
+    if (!window.Promise) { // very old browsers fallback
+      document.getElementById('countdown').innerHTML = '<div style="width:100%;text-align:center;">Scheduled update</div>';
+    }
   </script>
 </body>
 </html>
