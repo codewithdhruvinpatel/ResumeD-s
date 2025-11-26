@@ -58,7 +58,7 @@ function checkAuth(req, res, next) {
 // Routes
 app.get('/', (req, res) => res.render('pages/home', { title: "Home - D's Resume" }));
 app.get('/login', (req, res) => {
-  res.render('pages/maintenance', {
+  res.render('pages/login', {
     title: 'Login - D’s Resume'
   });
 });
@@ -102,7 +102,7 @@ app.post('/login', async (req, res) => {
 
 
 app.get('/register', (req, res) => {
-  res.render('pages/maintenance', {
+  res.render('pages/register', {
     title: 'Register - D’s Resume'
   });
 });
