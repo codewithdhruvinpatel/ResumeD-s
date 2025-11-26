@@ -1,66 +1,50 @@
-<!-- LOGIN SECTION (standalone page) -->
+<%- include('../partials/head') %>
+<!-- Background Particles -->
+
+<%- include('../partials/navbar') %>
+
+<!-- LOGIN SECTION -->
 <section class="container d-flex align-items-center justify-content-center" style="min-height: 90vh; position: relative; z-index: 2;">
   <div class="glass-card p-5 shadow-lg w-100" style="max-width: 420px;" data-aos="zoom-in" data-aos-duration="1200">
 
-    <!-- Small Home Link -->
-    <div class="mb-3 text-start">
-      <a href="https://dsoffice.online" class="small text-info text-decoration-underline">← Back to dsoffice.online</a>
-    </div>
-
     <!-- Title -->
-    <h3 class="text-center glow-text mb-3">🔐 Login to Continue</h3>
+    <h3 class="text-center glow-text mb-4">🔐 Login to Continue</h3>
 
     <!-- Call to Action Info -->
-    <p class="mb-3 text-center small text-light">
-      <i class="fas fa-info-circle me-1" aria-hidden="true"></i>
-      <span class="visually-hidden">Info:</span>
-      Login to <strong>request a project</strong> or <strong>track your status</strong>. If you're new, please
-      <a href="/register" class="text-info text-decoration-underline">register here</a>.
-    </p>
+    <div class="mb-3 text-center small text-light">
+      <i class="fas fa-info-circle me-1"></i>
+      Login to <strong>request a project</strong> or <strong>track your status</strong>. If you're new, please <a href="/register" class="text-info text-decoration-underline">register here</a>.
+    </div>
+
+  
 
     <!-- Login Form -->
-    <form method="POST" action="/login" id="loginForm" novalidate>
-
+    <form method="POST" action="/login" id="loginForm">
       <div class="mb-3">
-        <label for="email" class="form-label visually-hidden">Email</label>
-        <input id="email" name="email" type="email" class="form-control bg-black text-info border-info" placeholder="Email" required aria-required="true" />
+        <input name="email" type="email" class="form-control bg-black text-info border-info" placeholder="Email" required />
       </div>
-
       <div class="mb-3">
-        <label for="password" class="form-label visually-hidden">Password</label>
-        <input id="password" name="password" type="password" class="form-control bg-black text-info border-info" placeholder="Password" required aria-required="true" />
+        <input name="password" type="password" class="form-control bg-black text-info border-info" placeholder="Password" required />
       </div>
 
-      <!-- Show password control -->
-      <div class="d-flex justify-content-end mb-3">
-        <button type="button" class="btn btn-sm btn-link text-info" id="togglePassword" aria-pressed="false">Show</button>
-      </div>
+      <!-- Human Verification -->
+     <!-- reCAPTCHA Widget -->
+
+
 
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-glow w-100 mb-3">Login</button>
-
+      <button class="btn btn-glow w-100">Login</button>
     </form>
 
     <!-- Forgot + Register Links -->
-    <div class="text-center mt-2 small">
-      <a href="/forgot-password" class="text-info text-decoration-underline me-2">Forgot Password?</a>
+    <div class="text-center mt-3">
+      <a href="/forgot-password" class="text-info small text-decoration-underline me-2">Forgot Password?</a>
       <span class="text-white-50">|</span>
-      <a href="/register" class="text-info text-decoration-underline ms-2">New user? Register</a>
+      <a href="/register" class="text-info small text-decoration-underline ms-2">New user? Register</a>
     </div>
-
   </div>
+
+
 </section>
 
-
-<!-- Optional: small script to toggle password visibility (no external libs required) -->
-<script>
-  document.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'togglePassword') {
-      const pwd = document.getElementById('password');
-      const shown = pwd.type === 'text';
-      pwd.type = shown ? 'password' : 'text';
-      e.target.textContent = shown ? 'Show' : 'Hide';
-      e.target.setAttribute('aria-pressed', String(!shown));
-    }
-  });
-</script>
+<%- include('../partials/footer') %>
