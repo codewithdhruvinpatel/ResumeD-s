@@ -66,18 +66,8 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  const recaptcha = req.body['g-recaptcha-response'];
-
-
 
   try {
-    const response = await axios.post(verifyURL);
-    if (!response.data.success) {
-      req.flash('error', 'reCAPTCHA failed. Try again.');
-      return res.redirect('/login');
-    }
-
-    // 2. Your login logic continues...
     const result = await pool.query('SELECT * FROM clint_users WHERE email = $1', [email]);
     if (result.rows.length === 0) {
       req.flash('error', 'No user found');
@@ -91,14 +81,18 @@ app.post('/login', async (req, res) => {
       return res.redirect('/login');
     }
 
+    // Remove password before storing session
+    delete user.password;
     req.session.user = user;
+
     res.redirect('/dashboard');
   } catch (err) {
-    console.error(err);
+    console.error('Login error:', err);
     req.flash('error', 'Something went wrong');
     res.redirect('/login');
   }
 });
+
 
 
 app.get('/register', (req, res) => {
