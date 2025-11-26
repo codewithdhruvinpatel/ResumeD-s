@@ -102,19 +102,48 @@ app.get('/register', (req, res) => {
 });
 app.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
+
+  // Basic server-side validation
+  if (!name || !email || !password) {
+    req.flash('error', 'All fields are required.');
+    return res.redirect('/register');
+  }
+  if (password.length < 6) {
+    req.flash('error', 'Password must be at least 6 characters.');
+    return res.redirect('/register');
+  }
+  // simple email check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    req.flash('error', 'Enter a valid email address.');
+    return res.redirect('/register');
+  }
+
   try {
-    const { rows } = await pool.query('SELECT * FROM clint_users WHERE email = $1', [email]);
-    if (rows[0]) {
-      req.flash('error', 'User already exists.'); return res.redirect('/register');
+    // Check existing user
+    const { rows } = await pool.query('SELECT id FROM clint_users WHERE email = $1', [email]);
+    if (rows.length > 0) {
+      req.flash('error', 'User already exists. Please login or use another email.');
+      return res.redirect('/register');
     }
+
+    // Hash password and insert
     const hashed = await bcrypt.hash(password, 10);
-    await pool.query('INSERT INTO clint_users (name,email,password) VALUES ($1,$2,$3)', [name, email, hashed]);
+    await pool.query(
+      'INSERT INTO clint_users (name, email, password, created_at) VALUES ($1, $2, $3, NOW())',
+      [name.trim(), email.toLowerCase().trim(), hashed]
+    );
+
     req.flash('success', 'Registered successfully. Please log in.');
     res.redirect('/login');
   } catch (err) {
-    console.error(err); req.flash('error', 'Error occurred'); res.redirect('/register');
+    console.error('Register error:', err);
+    // Do not leak DB errors to users; log for devs and show generic message
+    req.flash('error', 'Something went wrong. Please try again later.');
+    res.redirect('/register');
   }
 });
+
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
