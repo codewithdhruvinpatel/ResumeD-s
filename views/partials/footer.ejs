@@ -100,5 +100,39 @@
 </script>
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+// new
+<!-- include sweetalert2 CDN (put in head or before closing body) -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // res.locals.success and res.locals.error are arrays from connect-flash.
+  // We serialize them into JS safely with EJS's JSON encoding.
+  const flashSuccess = <%- JSON.stringify(res.locals.success || []) %>;
+  const flashError   = <%- JSON.stringify(res.locals.error   || []) %>;
+
+  // Show only on these routes (optional guard)
+  // uncomment if you want to show only on login/register/signup paths:
+  // const allowed = ['/login','/register','/signup'];
+  // if (!allowed.includes(window.location.pathname)) { /* skip showing */ }
+
+  if (Array.isArray(flashSuccess) && flashSuccess.length) {
+    Swal.fire({
+      icon: 'success',
+      title: flashSuccess[0],
+      showConfirmButton: false,
+      timer: 2200
+    });
+  }
+
+  if (Array.isArray(flashError) && flashError.length) {
+    Swal.fire({
+      icon: 'error',
+      title: flashError[0],
+      showConfirmButton: false,
+      timer: 3200
+    });
+  }
+</script>
+
 </body>
 </html>
